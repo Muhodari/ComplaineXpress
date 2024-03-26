@@ -1,6 +1,7 @@
 # Complaint file
 complaints_file = "complaints-list_1023.txt"
 
+
 while True:
     print("****************************************")
     print("* Welcome to ComplineXpress System     *")
@@ -11,7 +12,9 @@ while True:
     print("4. Respond to Complaint                *")
     print("5. Exit                                *")
 
+
     choice = input("Enter choice(1-5): ")
+
 
     if choice == '1':
     print("Register complaint ")
