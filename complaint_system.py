@@ -30,11 +30,14 @@ while True:
     elif choice == '2':
        print("View all complains ")
 
+
     elif choice == '3':
        print("Delete complaints ")
  
+
     elif choice == '4':
        print("Respond complaints")
+
 
     elif choice == '5':
        print("Exit")
