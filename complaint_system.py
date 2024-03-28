@@ -32,7 +32,7 @@ def department(sector):
         print("\t3. Department 3")
         print("\t4. Return to All sectors choice")
 
-        choice = input("Enter choice: ")
+        choice = input("Enter department: ")
 
         if choice == '1':
             complain("Department 1")
