@@ -97,15 +97,12 @@ if __name__ == "__main__":
 
                     if complaint_status == '1':
                         print("Displaying approved complaints")
-                        exit(0)
 
                     elif complaint_status == '2':
                         print("Displaying ignored complaints")
-                        exit(0)
 
                     elif complaint_status == '3':
                         print("Displaying pending complaints")
-                        exit(0)
 
                     else:
                         print("Invalid status choice")
@@ -118,4 +115,4 @@ if __name__ == "__main__":
     else:
         print("UNKNOWN APPLICATION")
         exit(0)
-
+i
