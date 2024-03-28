@@ -52,11 +52,11 @@ while True:
                 else:
                     print("Invalid status choice")
                     exit(0)
-        elif leader_choice = '2':
+        elif leader_choice == '2':
             print("Approving the complaint")
-        elif leader_choice = '3':
+        elif leader_choice == '3':
             print("ignoring complaint")
-        elif leader_choice = '4':
+        elif leader_choice == '4':
             print("Thank you for using Complain express")
             exit(0)
         else:
