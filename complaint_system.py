@@ -1,4 +1,4 @@
-# Complaint file
+
 from colorama import init, Fore, Style
 complaints_file = "complaints-list_1023.txt"
 
@@ -10,7 +10,7 @@ def all_sectors_choice():
         print("\t3. Sector C")
         print("\t4. Return to main menu")
 
-        choice = input("Enter choice: ")
+        choice = input("Enter sector: ")
 
         if choice == '1':
             department("Sector A")
