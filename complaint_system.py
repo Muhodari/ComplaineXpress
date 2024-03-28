@@ -79,56 +79,66 @@ if __name__ == "__main__":
             sub_choice = input("Enter portal choice: ")
 
             if sub_choice == '1':
-                print("Admin Portal")
-                # Add admin functionalities here
-		print("1. Register user")
-		print("2. Lock user")
-		print("3. delete user")
-		print("4. update user")
-		print("5. view user")
-		print("6. create sector")
-		print("7. edit sector")
-		print("8. delete sector")
-		print("9. view sector")
-		print("10. create department")
-		print("11. edit department")
-		print("12. view department")
-		print("13. delete department")
-		print("14. logout")
+		admin_portal()
 
-		admin_choice = input("Enter admin choice")
-            elif sub_choice == '2':
-                 print("Leader Portal")
-                 print("1. View Complaints")
+	    elif sub_choice == '2':
+		leader_portal()
+	    else
+		print("invalid choice")
+	else
+	    print("UNKOWN APPLICATION")
+def admin_portal():
+    print("Admin Portal")
+    # Add admin functionalities here
+    print("1. Register user")
+    print("2. Lock user")
+    print("3. delete user")
+    print("4. update user")
+    print("5. view user")
+    print("6. create sector")
+    print("7. edit sector")
+    print("8. delete sector")
+    print("9. view sector")
+    print("10. create department")
+    print("11. edit department")
+    print("12. view department")
+    print("13. delete department")
+    print("14. logout")
 
-                 leader_choice = input("Enter leader choice: ")
+    admin_choice = input("Enter admin choice")
 
-                 if leader_choice == '1':
-                    print("1. Approved")
-                    print("2. Ignored")
-                    print("3. Pending")
+def leader_portal():
+    print("Leader Portal")
+    print("1. View Complaints")
+
+    leader_choice = input("Enter leader choice: ")
+
+    if leader_choice == '1':
+       print("1. Approved")
+       print("2. Ignored")
+       print("3. Pending")
                 
-                    complaint_status = input("Enter status choice: ")
+       complaint_status = input("Enter status choice: ")
 
-                    if complaint_status == '1':
-                        print("Displaying approved complaints")
-                        exit(0)
+       if complaint_status == '1':
+          print("Displaying approved complaints")
+          exit(0)
 
-                    elif complaint_status == '2':
-                        print("Displaying ignored complaints")
-                        exit(0)
+       elif complaint_status == '2':
+          print("Displaying ignored complaints")
+          exit(0)
 
-                    elif complaint_status == '3':
-                        print("Displaying pending complaints")
-                        exit(0)
+          elif complaint_status == '3':
+          print("Displaying pending complaints")
+          exit(0)
 
-                    else:
-                        print("Invalid status choice")
-                        exit(0)
+          else:
+          print("Invalid status choice")
+          exit(0)
 
-        else:
-            print("Invalid sub-choice")
-            exit(0)
+    else:
+        print("Invalid sub-choice")
+        exit(0)
 
     else:
         print("UNKNOWN APPLICATION")
