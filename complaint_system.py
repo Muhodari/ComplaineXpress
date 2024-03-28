@@ -81,7 +81,22 @@ if __name__ == "__main__":
             if sub_choice == '1':
                 print("Admin Portal")
                 # Add admin functionalities here
+		print("1. Register user")
+		print("2. Lock user")
+		print("3. delete user")
+		print("4. update user")
+		print("5. view user")
+		print("6. create sector")
+		print("7. edit sector")
+		print("8. delete sector")
+		print("9. view sector")
+		print("10. create department")
+		print("11. edit department")
+		print("12. view department")
+		print("13. delete department")
+		print("14. logout")
 
+		admin_choice = input("Enter admin choice")
             elif sub_choice == '2':
                  print("Leader Portal")
                  print("1. View Complaints")
