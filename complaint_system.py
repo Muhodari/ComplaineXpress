@@ -19,10 +19,10 @@ def all_sectors_choice():
         elif choice == '3':
             department("Sector C")
         elif choice == '4':
-            print("Returning to main menu")
+            print("\tReturning to main menu")
             break
         else:
-            print("Invalid choice. Please enter a number from 1 to 4.")
+            print("\tInvalid choice. Please enter a number from 1 to 4.")
 
 def department(sector):
     print(f"=> Departments in {sector}")
@@ -68,12 +68,12 @@ if __name__ == "__main__":
         choice = input(" ")
 
         if choice == '*127#':
-            print("CITIZEN PORTAL")
+            print("\tCITIZEN PORTAL")
             all_sectors_choice()
 
         elif choice == '*127*300#':
-            print("LEADER ADMIN VIEW PORTAL ")
+            print("\tLEADER ADMIN VIEW PORTAL ")
 
         else:
-            print("UNKNOWN APPLICATION")
+            print("\tUNKNOWN APPLICATION")
             exit(0)
