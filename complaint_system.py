@@ -41,16 +41,16 @@ def department(sector):
         elif choice == '3':
             complain("Department 3")
         elif choice == '4':
-            print("Returning to All sectors choice")
+            print("\tReturning to All sectors choice")
             break
         else:
-            print("Invalid choice. Please enter a number from 1 to 4.")
+            print("\tInvalid choice. Please enter a number from 1 to 4.")
 
 def complain(department):
     print("\n")
     print(f"=> Complain to  {department}")
     complaint_text = input("Enter your complaint: ")
-    print("Complaint submitted successfully!")
+    print("\tComplaint submitted successfully!")
     exit(0)
 
 # Entry point of the program
