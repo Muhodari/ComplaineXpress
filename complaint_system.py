@@ -1,7 +1,7 @@
 # Complaint file
 complaints_file = "complaints-list_1023.txt"
 def leadermenu():
-    print("Leader Options:")
+    print("Leader Portal:")
     print("1. View Complaints")
     print("2. Approve")
     print("3. Ignore")
@@ -26,8 +26,7 @@ while True:
             # Add admin functionalities here
 
         elif sub_choice == '2':
-            print("Leader Portal")
-            print("1. View Complaints")
+            leadermenu()
 
             leader_choice = input("Enter leader choice: ")
 
@@ -53,7 +52,13 @@ while True:
                 else:
                     print("Invalid status choice")
                     exit(0)
-       
+        elif leader_choice = '2':
+            print("Approving the complaint")
+        elif leader_choice = '3':
+            print("ignoring complaint")
+        elif leader_choice = '4':
+            print("Thank you for using Complain express")
+            exit(0)
         else:
             print("Invalid sub-choice")
             exit(0)
