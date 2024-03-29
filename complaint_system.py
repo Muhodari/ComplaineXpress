@@ -87,25 +87,90 @@ if __name__ == "__main__":
 		print("invalid choice")
 	else
 	    print("UNKOWN APPLICATION")
+
 def admin_portal():
     print("Admin Portal")
     # Add admin functionalities here
-    print("1. Register user")
-    print("2. Lock user")
-    print("3. delete user")
-    print("4. update user")
-    print("5. view user")
-    print("6. create sector")
-    print("7. edit sector")
-    print("8. delete sector")
-    print("9. view sector")
-    print("10. create department")
-    print("11. edit department")
-    print("12. view department")
-    print("13. delete department")
-    print("14. logout")
+    print("1. manage users")
+    print("2. manage sectors")
+    print("3. manage departments")
+    print("4. logout")
 
     admin_choice = input("Enter admin choice")
+
+    if admin_choice == '1':
+        print("1. Register user")
+        print("2. Lock user")
+        print("3. delete user")
+        print("4. update user")
+        print("5. view user")
+
+	user_choice = input("Enter choice")
+
+	if user_choice == '1':
+	    username = input("Enter username: ")
+	    print(f"user {username} registered successifuly")
+	elif user_choice == '2':
+	    username = input("Enter username to Lock: ")
+	    print(f"user {username} locked")
+	elif user_choice == '3':
+	    username = input("ENter username to delete: ")
+	    print(f"user {username} deleted")
+	elif user_choice == '4':
+	    username = input("Enter username")
+	    print("user updated")
+	elif user_choice == '5':
+	    print("user view")
+	else
+	    print("invalid choice")
+    elif admin_choice == '2':
+        print("1. create sector")
+        print("2. edit sector")
+        print("3. delete sector")
+        print("4. view sector")
+
+	sector_choice = input("Enter choice")
+
+        if sector_choice == '1':
+            sectorname = input("Enter sector: ")
+            print("sector created successifuly")
+        elif user_choice == '2':
+            sectorname = input("Enter sector: ")
+            print("sector edited")
+        elif sector_choice == '3':
+            sectorname = input("Enter sector to delete: ")
+            print("sector deleted")
+        elif sector_choice == '4':
+            print("sector view")
+	else
+	    print("invalid choice")
+
+    elif admin_choice == '3':
+        print("1. create department")
+        print("2. edit department")
+        print("3. delete department")
+        print("4. view department")
+
+	depart_choice = input("Enter choice")
+
+        if depart_choice == '1':
+            departname = input("Enter department: ")
+            print("department created successifuly")
+        elif depart_choice == '2':
+            departname = input("Enter department: ")
+            print("department edited")
+        elif depart_choice == '3':
+            departname = input("Enter department to delete: ")
+            print("department deleted")
+        elif depart_choice == '4':
+            print("department view")
+        else
+            print("invalid choice")
+    elif admin_choice == '4':
+        print("logging out")
+	exit(0)
+    else
+	print("invalid choice")
 
 def leader_portal():
     print("Leader Portal")
