@@ -121,7 +121,7 @@ def admin_portal():
 	    print("user updated")
 	elif user_choice == '5':
 	    print("user view")
-	else
+	else:
 	    print("invalid choice")
     elif admin_choice == '2':
         print("1. create sector")
@@ -142,7 +142,7 @@ def admin_portal():
             print("sector deleted")
         elif sector_choice == '4':
             print("sector view")
-	else
+	else:
 	    print("invalid choice")
 
     elif admin_choice == '3':
@@ -164,12 +164,12 @@ def admin_portal():
             print("department deleted")
         elif depart_choice == '4':
             print("department view")
-        else
+        else:
             print("invalid choice")
     elif admin_choice == '4':
         print("logging out")
 	exit(0)
-    else
+    else:
 	print("invalid choice")
 
 def leader_portal():
@@ -187,25 +187,17 @@ def leader_portal():
 
        if complaint_status == '1':
           print("Displaying approved complaints")
-          exit(0)
 
        elif complaint_status == '2':
           print("Displaying ignored complaints")
-          exit(0)
 
-          elif complaint_status == '3':
+       elif complaint_status == '3':
           print("Displaying pending complaints")
-          exit(0)
 
-          else:
+       else:
           print("Invalid status choice")
           exit(0)
 
     else:
         print("Invalid sub-choice")
         exit(0)
-
-    else:
-        print("UNKNOWN APPLICATION")
-        exit(0)
-
