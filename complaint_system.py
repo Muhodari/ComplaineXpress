@@ -50,7 +50,7 @@ def complain(department):
     print("\n")
     print(f"=> Complain to  {department}")
     complaint_text = input("Enter your complaint: ")
-    print("\tComplaint submitted successfully!")
+    print("\tComplain submitted successfully!")
     exit(0)
 
 # Entry point of the program
