@@ -1,6 +1,6 @@
 
 from colorama import init, Fore, Style
-from database import connect_to_database
+from DbConnector import connect_to_database
 complaints_file = "complaints-list_1023.txt"
 
 def all_sectors_choice():
