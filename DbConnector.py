@@ -10,7 +10,7 @@ def connect_to_database(host, user, password, database):
             password=password,
             database=database
         )
-        print("\n\t Connected to the database successfully")
+        print("\n\t ")
         return connection
     except mysql.connector.Error as error:
         print("Failed to connect to the database:", error)
