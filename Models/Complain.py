@@ -15,3 +15,4 @@ class Complain(Base):
     phone_number = Column(String(20))
     email_address = Column(String(255))
     status = Column(Enum('PENDING', 'REJECTED', 'APPROVED'))
+

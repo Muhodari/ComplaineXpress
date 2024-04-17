@@ -1,7 +1,9 @@
-
 from colorama import init, Fore, Style
 from DbConnector import connect_to_database
+from tabulate import tabulate
+
 complaints_file = "complaints-list_1023.txt"
+
 
 def all_sectors_choice():
     print("\tAll sectors  ")
@@ -25,6 +27,7 @@ def all_sectors_choice():
         else:
             print("\tInvalid choice. Please enter a number from 1 to 4.")
 
+
 def department(sector):
     print(f"=> Departments in {sector}")
     while True:
@@ -36,23 +39,79 @@ def department(sector):
         choice = input("Enter department: ")
 
         if choice == '1':
-            complain("Department 1")
+            complain("Department 1", sector)
         elif choice == '2':
-            complain("Department 2")
+            complain("Department 2", sector)
         elif choice == '3':
-            complain("Department 3")
+            complain("Department 3", sector)
         elif choice == '4':
             print("\tReturning to All sectors choice")
             break
         else:
             print("\tInvalid choice. Please enter a number from 1 to 4.")
 
-def complain(department):
+
+def complain(department, sector):
+    global cursor
     print("\n")
     print(f"=> Complain to  {department}")
-    complaint_text = input("Enter your complaint: ")
+    sector_id = 20
+    sector_name = sector
+    department_id = 10
+    department_name = department
+    complain_text = input("Enter complain: ")
+    phone_number = input("Enter phone number: ")
+    email_address = input("Enter email address: ").lower()
+    status = 'PENDING'
+    db_connection = connect_to_database("localhost", "root", "root", "complain_express")
+    try:
+        cursor = db_connection.cursor()
+        sql = "INSERT INTO Complain (sector_id, sector_name, department_id, department_name, complain_text, phone_number, email_address, status) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+        cursor.execute(sql, (sector_id, sector_name, department_id, department_name, complain_text, phone_number, email_address, status))
+        db_connection.commit()
+        print("Complain submitted successfully!")
+    except Exception as e:
+        print(f"Error inserting data into the database: {e}")
+    finally:
+        cursor.close()
+        db_connection.close()
     print("\tComplain submitted successfully!")
     exit(0)
+
+def read_complaint_by_id(complaint_id):
+    global cursor
+    try:
+        sql = "SELECT * FROM Complain WHERE id = %s"
+        cursor.execute(sql, (complaint_id,))
+        complaint = cursor.fetchone()
+        if complaint:
+            print("Complaint found:")
+            headers = ["ID", "Sector ID", "Sector Name", "Department ID", "Department Name", "Complain Text", "Phone Number", "Email Address", "Status"]
+            data = [[complaint[0], complaint[1], complaint[2], complaint[3], complaint[4], complaint[5], complaint[6], complaint[7], complaint[8]]]
+            table = tabulate(data, headers=headers, tablefmt="pretty")
+            print(table)
+        else:
+            print("Complaint not found.")
+    except Exception as e:
+        print(f"Error reading data from the database: {e}")
+def read_all_complaints():
+    global cursor
+    try:
+        sql = "SELECT * FROM Complain"
+        cursor.execute(sql)
+        complaints = cursor.fetchall()
+        if complaints:
+            print("All complaints found:")
+            headers = ["ID", "Sector ID", "Sector Name", "Department ID", "Department Name", "Complain Text", "Phone Number", "Email Address", "Status"]
+            data = [[c[0], c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8]] for c in complaints]
+            table = tabulate(data, headers=headers, tablefmt="pretty")
+            print(table)
+        else:
+            print("No complaints found.")
+    except Exception as e:
+        print(f"Error reading data from the database: {e}")
+
+
 
 # Entry point of the program
 if __name__ == "__main__":
@@ -97,6 +156,8 @@ if __name__ == "__main__":
                         print("1. Approved")
                         print("2. Ignored")
                         print("3. Pending")
+                        print("4. all")
+                        print("5. get by Id")
 
                         complaint_status = input("Enter status choice: ")
 
@@ -108,7 +169,12 @@ if __name__ == "__main__":
 
                         elif complaint_status == '3':
                             print("Displaying pending complaints")
-
+                        elif complaint_status == '4':
+                            print("Displaying all\n\n")
+                            read_all_complaints()
+                        elif complaint_status == '5':
+                            complainId = input("Enter complaint id: ")
+                            read_complaint_by_id(complainId)
                         else:
                             print("Invalid status choice")
                             exit(0)
@@ -120,6 +186,3 @@ if __name__ == "__main__":
         else:
             print("UNKNOWN APPLICATION")
             exit(0)
-
-
-
