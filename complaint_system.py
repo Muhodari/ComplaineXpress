@@ -11,7 +11,7 @@ def all_sectors_choice():
         print("\t1. Sector A")
         print("\t2. Sector B")
         print("\t3. Sector C")
-        print("\t4. Return to main menu")
+        print("\t4. Exit")
 
         choice = input("Enter sector: ")
 
@@ -23,9 +23,10 @@ def all_sectors_choice():
             department("Sector C")
         elif choice == '4':
             print("\tReturning to main menu")
-            break
+            exit(0)
         else:
             print("\tInvalid choice. Please enter a number from 1 to 4.")
+
 
 
 def department(sector):
@@ -50,6 +51,77 @@ def department(sector):
         else:
             print("\tInvalid choice. Please enter a number from 1 to 4.")
 
+def user_welcome():
+    while True:
+        print("\t1. Admin ")
+        print("\t2. Leader ")
+        print("\t3. Exit")
+
+        choice = input("Enter sector: ")
+
+        if choice == '1':
+            admin_portal()
+        elif choice == '2':
+           Leader_portal()
+        elif choice == "3":
+            exit(0)
+        else:
+            print("\tInvalid choice. Please enter a number from 1 to 2.")
+def Leader_portal():
+     while True:
+         print("\t1. View Complaints")
+         print("\t2. return main menu")
+         choice = input("Enter sector: ")
+         if choice == '1':
+             complain_view_list()
+         elif choice == '2':
+             user_welcome()
+         else:
+             print("\tInvalid choice. Please enter a number from")
+
+
+def complain_view_list():
+    while True:
+        print("1. Approved")
+        print("2. Ignored")
+        print("3. Pending")
+        print("4. all complain")
+        print("5. get by Id")
+        print("6. return to main menu")
+
+        complaint_status = input("Enter status choice: ")
+
+        if complaint_status == '1':
+            read_complaint_by_status("APPROVED")
+
+        elif complaint_status == '2':
+            read_complaint_by_status('REJECTED')
+
+        elif complaint_status == '3':
+            read_complaint_by_status('PENDING')
+        elif complaint_status == '4':
+            print("Displaying all\n\n")
+            read_all_complaints()
+        elif complaint_status == '5':
+            complainId = input("Enter complaint id: ")
+            read_complaint_by_id(complainId)
+        elif complaint_status == '6':
+             Leader_portal()
+
+        else:
+            print("Invalid status choice")
+
+
+def admin_portal():
+    while True:
+        print("1. Register user")
+        print("2. Lock user")
+        print("3. delete user")
+        print("4. update user")
+        print("5. view user")
+        enter_choice = input("Enter choice: ")
+        user_welcome()
+
 
 def complain(department, sector):
     global cursor
@@ -69,13 +141,13 @@ def complain(department, sector):
         sql = "INSERT INTO Complain (sector_id, sector_name, department_id, department_name, complain_text, phone_number, email_address, status) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
         cursor.execute(sql, (sector_id, sector_name, department_id, department_name, complain_text, phone_number, email_address, status))
         db_connection.commit()
-        print("Complain submitted successfully!")
+        print(" \t\tComplain submitted successfully!\n")
     except Exception as e:
         print(f"Error inserting data into the database: {e}")
     finally:
         cursor.close()
         db_connection.close()
-    print("\tComplain submitted successfully!")
+    all_sectors_choice()
     exit(0)
 
 def read_complaint_by_id(complaint_id):
@@ -94,6 +166,24 @@ def read_complaint_by_id(complaint_id):
             print("Complaint not found.")
     except Exception as e:
         print(f"Error reading data from the database: {e}")
+
+def read_complaint_by_status(complaint_status):
+    global cursor
+    try:
+        sql = "SELECT * FROM Complain WHERE status = %s"
+        cursor.execute(sql, (complaint_status,))
+        complaints = cursor.fetchall()
+        if complaints:
+            print("Complaint found:")
+            headers = ["ID", "Sector ID", "Sector Name", "Department ID", "Department Name", "Complain Text", "Phone Number", "Email Address", "Status"]
+            data = [[c[0], c[1], c[2], c[3], c[4], c[5], c[6], c[7], c[8]] for c in complaints]
+            table = tabulate(data, headers=headers, tablefmt="pretty")
+            print(table)
+        else:
+            print(" \tNo Complaint Found\n\n")
+    except Exception as e:
+        print(f"Error reading data from the database: {e}")
+
 def read_all_complaints():
     global cursor
     try:
@@ -131,54 +221,12 @@ if __name__ == "__main__":
 
             choice = input(" ")
 
-            if choice == '*127#':
+            if choice == '*409#':
                 print("\tCITIZEN PORTAL")
                 all_sectors_choice()
 
-            elif choice == '*127*300#':
-                print("LEADER ADMIN VIEW PORTAL")
-                print("1. Admin")
-                print("2. Leader")
-
-                sub_choice = input("Enter portal choice: ")
-
-                if sub_choice == '1':
-                    print("Admin Portal")
-                    # Add admin functionalities here
-
-                elif sub_choice == '2':
-                    print("Leader Portal")
-                    print("1. View Complaints")
-
-                    leader_choice = input("Enter leader choice: ")
-
-                    if leader_choice == '1':
-                        print("1. Approved")
-                        print("2. Ignored")
-                        print("3. Pending")
-                        print("4. all")
-                        print("5. get by Id")
-
-                        complaint_status = input("Enter status choice: ")
-
-                        if complaint_status == '1':
-                            print("Displaying approved complaints")
-
-                        elif complaint_status == '2':
-                            print("Displaying ignored complaints")
-
-                        elif complaint_status == '3':
-                            print("Displaying pending complaints")
-                        elif complaint_status == '4':
-                            print("Displaying all\n\n")
-                            read_all_complaints()
-                        elif complaint_status == '5':
-                            complainId = input("Enter complaint id: ")
-                            read_complaint_by_id(complainId)
-                        else:
-                            print("Invalid status choice")
-                            exit(0)
-
+            elif choice == '*409*300#':
+                user_welcome()
             else:
                 print("Invalid sub-choice")
                 exit(0)
